@@ -15,6 +15,7 @@ const Navbar = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [active, setActive] = useState("Home");
 	const [copilotOpen, setCopilotOpen] = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -84,7 +85,22 @@ const Navbar = () => {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}
 		setActive('Home');
+		setMobileOpen(false);
 	};
+
+	// Close mobile menu when route changes or viewport grows to md
+	useEffect(() => {
+		const onResize = () => {
+			if (window.innerWidth >= 768) setMobileOpen(false);
+		};
+		window.addEventListener('resize', onResize);
+		return () => window.removeEventListener('resize', onResize);
+	}, []);
+
+	useEffect(() => {
+		// close on route change
+		setMobileOpen(false);
+	}, [location.pathname]);
 
 	return (
 		<nav
@@ -125,7 +141,11 @@ const Navbar = () => {
 						</a>
 					))}
 				</div>
-				<div className="ml-4 flex items-center gap-3">
+					{/* Chatbot portal renders outside, safe to keep mounted always */}
+					<Chatbot />
+
+					{/* Desktop actions */}
+					<div className="ml-4 hidden md:flex items-center gap-3">
 					<button
 						className="hero-btn-gradient-border relative font-semibold py-2 px-7 rounded-full shadow-lg transition duration-300 text-white overflow-hidden focus:outline-none text-base scale-100 hover:scale-105"
 						onClick={(e) => { handleRipple(e); navigate('/transparency'); }}
@@ -133,10 +153,6 @@ const Navbar = () => {
 						<span className="relative z-10">Explore Now</span>
 						<span className="hero-btn-border absolute inset-0 rounded-full pointer-events-none"></span>
 					</button>
-
-					
-
-					<Chatbot />
 
 					{/* Auth controls */}
 					<SignedOut>
@@ -162,7 +178,72 @@ const Navbar = () => {
 						<UserButton afterSignOutUrl="/" appearance={{ elements: { userButtonAvatarBox: 'ring-2 ring-teal-400' } }} />
 					</SignedIn>
 				</div>
+
+					{/* Mobile hamburger */}
+					<button
+						className="md:hidden ml-auto inline-flex items-center justify-center p-2 rounded-lg text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
+						aria-label="Toggle navigation menu"
+						aria-controls="mobile-menu"
+						aria-expanded={mobileOpen}
+						onClick={() => setMobileOpen(!mobileOpen)}
+					>
+						<svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+							{mobileOpen ? (
+								<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+							) : (
+								<path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+							)}
+						</svg>
+					</button>
 			</div>
+
+		            {/* Mobile menu overlay */}
+		            {mobileOpen && (
+		                <>
+		                    <div className="fixed inset-0 z-40 bg-black/20 md:hidden" onClick={() => setMobileOpen(false)} />
+		                    <div id="mobile-menu" className="md:hidden absolute inset-x-0 top-full z-50">
+		                        <div className="mx-4 mt-2 rounded-2xl border border-emerald-100/60 bg-white/90 backdrop-blur-xl shadow-xl overflow-hidden">
+		                            <div className="px-4 py-3 divide-y divide-emerald-100/70">
+		                                <div className="py-2 flex flex-col">
+		                                    {navLinks.map((link) => (
+		                                        <a
+		                                            key={link.name}
+		                                            href={link.href}
+		                                            onClick={(e) => { handleNavClick(link.name, link.href, e); setMobileOpen(false); }}
+		                                            className={`px-2 py-3 rounded-lg text-base font-medium ${active === link.name ? 'text-emerald-700' : 'text-slate-800'} hover:bg-emerald-50 transition-colors`}
+		                                        >
+		                                            {link.name}
+		                                        </a>
+		                                    ))}
+		                                </div>
+		                                <div className="py-3 flex items-center gap-3">
+		                                    <button
+		                                        className="flex-1 hero-btn-gradient-border relative font-semibold py-2 px-6 rounded-full text-white overflow-hidden"
+		                                        onClick={(e) => { handleRipple(e); setMobileOpen(false); navigate('/transparency'); }}
+		                                    >
+		                                        <span className="relative z-10">Explore Now</span>
+		                                        <span className="hero-btn-border absolute inset-0 rounded-full pointer-events-none"></span>
+		                                    </button>
+		                                    <SignedOut>
+		                                        <SignInButton mode="modal" afterSignInUrl="/" afterSignUpUrl="/">
+		                                            <button
+		                                                aria-label="Log in"
+		                                                onClick={() => setMobileOpen(false)}
+		                                                className="login-btn px-5 py-2 rounded-full font-semibold text-gray-800"
+		                                            >
+		                                                Log in
+		                                            </button>
+		                                        </SignInButton>
+		                                    </SignedOut>
+		                                    <SignedIn>
+		                                        <UserButton afterSignOutUrl="/" />
+		                                    </SignedIn>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </>
+		            )}
 			<BlackboxCopilot open={copilotOpen} onClose={() => setCopilotOpen(false)} />
 			<style>{`
 				.nav-link { overflow: hidden; }
