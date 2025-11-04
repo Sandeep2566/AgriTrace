@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 const dummyImg = "https://randomuser.me/api/portraits/men/32.jpg";
 const testimonials = [
-	{ name: "Ravi Kumar", role: "Farmer", quote: "With AgriChain, I get fair prices and know exactly where my produce goes. No more middlemen cheating!", img: dummyImg },
+	{ name: "Ravi Kumar", role: "Farmer", quote: "With AgriTrace, I get fair prices and know exactly where my produce goes. No more middlemen cheating!", img: dummyImg },
 	{ name: "Priya Sharma", role: "Consumer", quote: "I can scan and see the journey of my food. I trust what I eat now!", img: "https://randomuser.me/api/portraits/women/44.jpg" },
 	{ name: "Amit Singh", role: "Distributor", quote: "The process is transparent and easy to manage. Everyone benefits!", img: "https://randomuser.me/api/portraits/men/65.jpg" },
 ];

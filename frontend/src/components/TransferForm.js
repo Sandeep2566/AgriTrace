@@ -52,7 +52,7 @@ function TransferForm() {
         currency: data.currency || 'INR',
         amount: data.amount, // in paise
         order_id: data.orderId,
-        name: 'AgriChain',
+  name: 'AgriTrace',
         description: `Ownership transfer for ${form.batchId}`,
         prefill: {},
         handler: async function (response) {

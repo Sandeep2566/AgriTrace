@@ -122,7 +122,7 @@ const Navbar = () => {
 							<path d="M13.5 10.5a3 3 0 0 1 4.24 4.24l-2.12 2.12a3 3 0 0 1-4.24-4.24l.7-.7" stroke="#14b8a6" strokeWidth="2.2" strokeLinecap="round"/>
 						</svg>
 					</span>
-					<span className="text-2xl font-extrabold bg-gradient-to-r from-green-600 via-teal-400 to-green-400 bg-clip-text text-transparent tracking-tight transition-transform duration-300 group-hover:scale-105 group-active:scale-95">AgriChain</span>
+					<span className="text-2xl font-extrabold bg-gradient-to-r from-green-600 via-teal-400 to-green-400 bg-clip-text text-transparent tracking-tight transition-transform duration-300 group-hover:scale-105 group-active:scale-95">AgriTrace</span>
 				</div>
 				<div className="hidden md:flex items-center gap-2">
 					{navLinks.map((link) => (

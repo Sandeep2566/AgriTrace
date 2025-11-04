@@ -22,7 +22,7 @@ const Footer = () => (
               />
             </svg>
           </span>
-          <span className="font-bold text-lg tracking-wide">AgriChain</span>
+          <span className="font-bold text-lg tracking-wide">AgriTrace</span>
         </div>
         <div className="flex gap-3 mt-2">
           <a
@@ -108,7 +108,7 @@ const Footer = () => (
       </div>
     </div>
     <div className="border-t border-white/10 mt-4 py-4 text-center text-xs text-gray-500">
-      &copy; {new Date().getFullYear()} AgriChain. All rights reserved.
+  &copy; {new Date().getFullYear()} AgriTrace. All rights reserved.
     </div>
   </footer>
 );

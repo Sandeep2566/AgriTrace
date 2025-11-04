@@ -38,7 +38,7 @@ export default function BlackboxCopilot({ open, onClose, batchId, txHash }) {
     <div className="fixed bottom-6 right-6 z-[100] w-[360px] sm:w-[420px]">
       <div className="rounded-2xl shadow-2xl overflow-hidden bg-white/85 backdrop-blur-xl border border-white/50">
         <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-green-600 via-teal-500 to-green-400 text-white">
-          <div className="font-semibold">AgriChain Copilot</div>
+          <div className="font-semibold">AgriTrace Copilot</div>
           <button onClick={onClose} className="opacity-90 hover:opacity-100">✕</button>
         </div>
         <div ref={scrollRef} className="max-h-[50vh] overflow-y-auto p-4 space-y-3">

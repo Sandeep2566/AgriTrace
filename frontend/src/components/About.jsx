@@ -72,7 +72,7 @@ const About = () => {
               <span className={`block h-[3px] mt-3 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 rounded-full w-0 transition-all duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] ${visible ? '!w-64' : ''}`} aria-hidden="true" />
             </h2>
             <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-1">Building an open, verifiable backbone for equitable, data‑driven agri supply ecosystems.</p>
-            <p className="text-gray-700 leading-relaxed text-base md:text-lg max-w-xl">AgriChain unifies blockchain traceability, role-based governance, and data-driven intelligence to bring radical transparency and operational efficiency to agricultural supply chains. From farm creation events to consumer-facing QR code scans, every action is securely anchored.</p>
+            <p className="text-gray-700 leading-relaxed text-base md:text-lg max-w-xl">AgriTrace unifies blockchain traceability, role-based governance, and data-driven intelligence to bring radical transparency and operational efficiency to agricultural supply chains. From farm creation events to consumer-facing QR code scans, every action is securely anchored.</p>
             <ul className="space-y-3 text-sm md:text-base pt-2">
               {featureList.map((f,i)=>(
                 <li key={i} className={`flex items-start gap-3 transition-all duration-700 [transition-delay:${i*70}ms] ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
